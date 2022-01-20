@@ -13,7 +13,7 @@ In front of you lies a general-purpose Mixin loader framework, designed to serve
 - Proper development environment support.
 
 ## Workspace Setup:
-Here are the examples of how to setup Grimoire-dependent mod workspace:
+Here you can find the examples on how to setup Grimoire-dependent mod workspace:
 - For 1.7.10: https://github.com/CrucibleMC/ForgeWorkspaceSetup/tree/1.7.10-grimmix
 - For 1.12.2: https://github.com/CrucibleMC/ForgeWorkspaceSetup/tree/1.12.2-grimmix
 
