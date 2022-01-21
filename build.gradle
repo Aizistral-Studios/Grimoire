@@ -1,6 +1,51 @@
+buildscript {
+  repositories {
+    maven {
+      url "https://plugins.gradle.org/m2/"
+    }
+  }
+  dependencies {
+    classpath "com.github.breadmoirai:github-release:2.2.12"
+  }
+}
+
+apply plugin: "com.github.breadmoirai.github-release"
+rootProject.version = '3.2.10'
+
 subprojects {
     apply plugin: 'idea'
     apply plugin: 'eclipse'
     group = 'io.github.crucible.grimoire'
-    version = '3.2.10'
+	version = rootProject.version
 }
+
+task release() {}
+
+gradle.projectsEvaluated({
+githubRelease {
+    token findProperty('githubKey') ?: 0 
+    owner "Aizistral-Studios"
+    repo "Grimoire"
+    tagName "v" + project.version
+    targetCommitish "master"
+    releaseName "Grimoire v" + project.version 
+    body new File('gradle/clnotice.md').getText('UTF-8')
+    draft false
+    prerelease false
+    releaseAssets(file('Grimoire-mc1.7.10/build/libs/Grimoire-mc1.7.10-' + project(':Grimoire-mc1.7.10').version + '.jar'), file('Grimoire-mc1.12.2/build/libs/Grimoire-mc1.12.2-' + project(':Grimoire-mc1.12.2').version + '.jar'))
+
+    overwrite false 
+    dryRun false 
+    apiEndpoint "https://api.github.com" 
+    client
+}
+
+project.subprojects { sub ->
+	rootProject.tasks.named('githubRelease').get().dependsOn(sub.tasks.named('build').get())
+	rootProject.tasks.named('release').get().dependsOn(rootProject.tasks.named('githubRelease').get())
+	if (sub.name.startsWith('Grimoire-mc')) {
+		rootProject.tasks.named('release').get().dependsOn(sub.tasks.named('curseforge').get())
+		rootProject.tasks.named('release').get().dependsOn(sub.tasks.named('publish').get())
+	}
+}
+})

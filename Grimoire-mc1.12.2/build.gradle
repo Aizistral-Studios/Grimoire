@@ -10,19 +10,17 @@ buildscript {
             name = "github"
             url = "https://github.com/juanmuscaria/maven/raw/master"
         }
-        jcenter()
         mavenCentral()
-        gradlePluginPortal()
+		maven {
+			url "https://plugins.gradle.org/m2/"
+		}
     }
     dependencies {
         classpath 'net.minecraftforge.gradle:ForgeGradle:3.+'
         classpath 'org.spongepowered:mixingradle:0.7-SNAPSHOT'
 		classpath 'com.integral.grimoire:GrimoireShenanigans:1.2.5' // Has to be this or lower
+		classpath 'gradle.plugin.com.matthewprenger:CurseGradle:1.4.0'
     }
-}
-
-plugins {
-    id "com.jfrog.bintray" version "1.8.4"
 }
 
 project.evaluationDependsOn(":Grimoire-shared")
@@ -32,6 +30,8 @@ apply plugin: 'org.spongepowered.mixin'
 apply from: '../artifacts.gradle'
 apply from: '../publish.gradle'
 apply plugin: 'grimoire-shenanigans'
+apply plugin: 'com.matthewprenger.cursegradle'
+apply from: '../curseforge.gradle'
 
 archivesBaseName = project.name
 

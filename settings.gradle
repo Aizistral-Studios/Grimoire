@@ -1,7 +1,6 @@
 rootProject.name = 'Grimoire'
 include(
         'Grimoire-shared',
-        'Grimoire-mc1.7.10',
-        'Grimoire-mc1.12.2'
+        'Grimoire-mc1.12.2',
+        'Grimoire-mc1.7.10'
 )
-

@@ -84,5 +84,3 @@ publishing {
         }
     }
 }
-
-bintrayUpload.dependsOn assemble

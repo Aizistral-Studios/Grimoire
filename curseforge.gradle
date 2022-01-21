@@ -1,0 +1,36 @@
+curseforge {
+    project {
+        apiKey = findProperty('curseKey') ?: 0
+        
+		id = "${curse_id}"
+        releaseType = "${curse_release}"
+        changelogType = 'markdown'
+        changelog = file('build/CHANGELOG.md')
+		
+		if (project.name.endsWith('1.7.10')) {
+			addGameVersion '1.7.10'
+		} else if (project.name.endsWith('1.12.2')) {
+			addGameVersion '1.12.2'
+		}
+		
+        //addArtifact(devJar)
+        //addArtifact(sourcesJar)
+    }
+}
+
+task copyChangelog(type: Copy) { 
+	inputs.dir buildDir
+	outputs.dir buildDir
+	
+	from ('../docs/CHANGELOG.md')
+	into ('build/')
+	filter { line -> line.replaceAll('## Release', '### <u>Release') }
+	filter { line -> line.replaceAll('# Grimoire Changelog', '# <u>**Grimoire Changelog**</u>') }
+}
+
+tasks.named('curseforge').get().dependsOn('copyChangelog')
+
+// Make sure 1.12.2 builds are always published last... or no
+// project(':Grimoire-mc1.7.10').afterEvaluate {
+//	 project(':Grimoire-mc1.12.2').tasks.named('curseforge').get().dependsOn(project(':Grimoire-mc1.7.10').tasks.named('compileJava').get())
+// }
