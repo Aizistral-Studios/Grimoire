@@ -64,19 +64,19 @@ public class EHIntegration {
         return integration.canFromTo(world, fromX, fromY, fromZ, direction);
     }
 
-    public static boolean caneleport(EntityPlayer player, World toWorld, double toX, double toY, double toZ) {
+    public static boolean canTeleport(EntityPlayer player, World toWorld, double toX, double toY, double toZ) {
         return integration.canTeleport(player, toWorld, toX, toY, toZ);
     }
 
-    public static boolean caneleport(EntityPlayer player, World fromWorld, double fromX, double fromY, double fromZ, World toWorld, double toX, double toY, double toZ) {
+    public static boolean canTeleport(EntityPlayer player, World fromWorld, double fromX, double fromY, double fromZ, World toWorld, double toX, double toY, double toZ) {
         return integration.canTeleport(player, fromWorld, fromX, fromY, fromZ, toWorld, toX, toY, toZ);
     }
 
-    public static boolean caneleport(Entity entity, World toWorld, double toX, double toY, double toZ) {
+    public static boolean canTeleport(Entity entity, World toWorld, double toX, double toY, double toZ) {
         return integration.canTeleport(entity, toWorld, toX, toY, toZ);
     }
 
-    public static boolean caneleport(Entity entity, World fromWorld, double fromX, double fromY, double fromZ, World toWorld, double toX, double toY, double toZ) {
+    public static boolean canTeleport(Entity entity, World fromWorld, double fromX, double fromY, double fromZ, World toWorld, double toX, double toY, double toZ) {
         return integration.canTeleport(entity, fromWorld, fromX, fromY, fromZ, toWorld, toX, toY, toZ);
     }
 
