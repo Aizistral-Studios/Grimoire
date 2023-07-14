@@ -2,6 +2,11 @@
 Global log for all Grimoire changes, starting with release 3.2.0.
 
 
+## Release v3.2.11
+
+- Fixed synchronization issues when using `@AnnotationConfig`.
+
+
 ## Release v3.2.10
 
 - Implemented `IOmniconfigBuilder#commentCategory` method;
