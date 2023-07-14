@@ -109,7 +109,7 @@ public abstract class AbstractParameter<T extends IAbstractProperty> implements 
         builder.getParentBuilder().getPropertyMap().put(this.getID(), this);
     }
 
-    protected void notifyListeners() {
+    public void notifyListeners() {
         this.sidedType.executeSided(() -> {
             this.listeners.forEach(listener -> {
                 listener.accept((T) this);

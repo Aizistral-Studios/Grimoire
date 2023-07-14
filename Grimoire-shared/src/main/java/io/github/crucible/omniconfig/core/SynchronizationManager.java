@@ -120,6 +120,7 @@ public class SynchronizationManager {
             if (parameter != null) {
                 String oldValue = parameter.valueToString();
                 parameter.parseFromString(entry.getValue());
+                parameter.notifyListeners();
 
                 OmniconfigCore.logger.info("Value of '" + parameter.getID() + "' was set to '" + parameter.valueToString() + "'; old value: " + oldValue);
             } else {
